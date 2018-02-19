@@ -1,6 +1,8 @@
 extends ../layout
 
 block body
+    if error
+        p= error
     form(action='/users/register' method='post')
         label(for='username') Username
         input(name='username' type='text')
