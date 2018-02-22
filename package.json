@@ -23,7 +23,8 @@
     "express-session": "^1.15.6",
     "morgan": "^1.8.2",
     "pug": "^2.0.0-rc.4",
-    "sequelize": "^4.33.0"
+    "sequelize": "^4.33.0",
+    "heroku-postbuild": "sequelize db:migrate"
   },
   "devDependencies": {
     "eslint": "^4.7.0",
