@@ -8,7 +8,14 @@ module.exports = (sequelize, DataTypes) => {
         this.setDataValue('password', password.split('').reverse().join(''));
       }
     }
-  }, {
+  }, 
+  email: {
+    type: DataTypes.STRING,
+    validate: {
+      isEmail: true
+    }
+  },
+  {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
