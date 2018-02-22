@@ -1,11 +1,15 @@
 sudo: false
 dist: trusty
-
 language: node_js
 node_js:
-    - "7"
-    - "stable"
-
+- '7'
+- stable
 cache:
   directories:
-      - node_modules
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: b407fc1a-8003-40bb-9247-ce23a8f4e793
+  app: murmuring-brushlands-61068
+  
