@@ -13,7 +13,8 @@
     "dev": "NODE_ENV=development nodemon ./lib/index.js",
     "start": "node ./lib/index.js",
     "coverage": "opn coverage/lcov-report/index.html",
-    "sequelize": "sequelize"
+    "sequelize": "sequelize",
+    "heroku-postbuild": "sequelize db:migrate"
   },
   "keywords": [],
   "author": "",
@@ -25,16 +26,20 @@
     "express": "^4.15.4",
     "express-session": "^1.15.6",
     "morgan": "^1.8.2",
+    "pg": "^7.4.1",
     "pug": "^2.0.0-rc.4",
     "sequelize": "^4.33.0",
-    "heroku-postbuild": "sequelize db:migrate"
+
+    "heroku-postbuild": "sequelize db:migrate",
+
+    "sequelize-cli": "^3.2.0"
+
   },
   "devDependencies": {
     "eslint": "^4.7.0",
     "jest": "^21.1.0",
     "nodemon": "^1.14.12",
     "opn-cli": "^3.1.0",
-    "sequelize-cli": "^3.2.0",
     "sqlite3": "^3.1.13",
     "supertest": "^3.0.0"
   }
