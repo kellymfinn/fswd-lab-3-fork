@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
 
-Add Comment
-    }
+
     completedAt: DataTypes.DATE
   }, {
     scopes: {
