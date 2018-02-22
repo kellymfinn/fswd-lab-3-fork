@@ -1,5 +1,3 @@
-import { appendFile } from 'fs';
-
 'use strict';
 
 // code to test
@@ -63,7 +61,7 @@ describe('register', function() {
             .then(function() {
                 return app
                     .get('/users/register')
-                    .expect(200, /user already exists/);
+                    .expect(200, /user already exists/); // <---- expect alert
             }); 
         });
     it('password confirmation was not a match', function() {
@@ -78,7 +76,7 @@ describe('register', function() {
             .then(function() {
                 return app
                     .get('/users/register')
-                    .expect(200, /passwords did not match/)
+                    .expect(200, /passwords did not match/) // <---- expect alert
             });
     });
     it('found user already logged in', function() {
@@ -97,3 +95,64 @@ describe('register', function() {
             })
     })            
 });
+
+describe('login', function() {
+    it('should login the user', function() {
+        return app
+            .post('/users/login')
+            .type('form')
+            .send({
+                username: 'userLogin',
+                password: 'userPass'
+            })
+            .then(function() {
+                return app
+                    .get('/users/welcome')
+                    .expect(200, /Hi userLogin/)
+            });
+    });
+    it('did not find the user', function() {
+        return app
+            .post('/users/login')
+            .type('form')
+            .send({
+                username: 'userLogin',
+                password: 'userPass'
+            })
+            .then(function() {
+                return app
+                    .get('users/login')
+                    .expect(200, /user does not exist/) // <---- expect alert
+            });
+    });
+    it('got an incorrect password', function() {
+        return app
+            .post('/users/login')
+            .type('form')
+            .send({
+                username: 'userLogin',
+                password: 'userPass'
+            })
+            .then(function() {
+                return app
+                    .get('users/login')
+                    .expect(200, /incorrect password/) // <---- expect alert
+            });
+    });
+    it('found user already logged in', function() {
+        return app
+            .post('/users/login')
+            .type('form')
+            .send({
+                username: 'userLogin',
+                password: 'userPass'
+            })
+            .then(function() {
+                return app
+                    .get('users/welcome')
+                    .expect(200, /Hi userLogin/) // <---- expect alert
+            });
+    });
+})
+
+
